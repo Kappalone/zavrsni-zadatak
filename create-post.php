@@ -1,5 +1,6 @@
 <?php
 include('db.php');
+include('header.php');
 ?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -11,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sql = "INSERT INTO posts (title, body, author, created_at) VALUES ('$title', '$body', '$author', '$created_at')";
   insertIntoDB($connection, $sql);
   header('location: index.php');
-}
+} 
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <main role="main" class="container">
     <div class="row">
       <div class="col-sm-8 blog-main">
-        <form method="POST" action="create-post.php">
+        <form method="POST" action="posts.php">
           <div class="u-gap-bottom">
             <label>Title</label>
             <input type="text" name="title">
