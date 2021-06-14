@@ -4,12 +4,10 @@ include('header.php');
 ?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $title = $_POST['title'];
-  $body = $_POST['body'];
-  $author = $_POST['author'];
-  $created_at_raw = htmlentities($_POST['created_at']);
-  $created_at = date('Y-m-d', (strtotime($created_at_raw)));
-  $sql = "INSERT INTO posts (title, body, author, created_at) VALUES ('$title', '$body', '$author', '$created_at')";
+  $ime = $_POST['ime'];
+  $prezime = $_POST['prezime'];
+  $pol = $_POST['pol'];
+  $sql = "INSERT INTO author (ime, prezime, pol) VALUES ('$ime', '$prezime', '$pol')";
   insertIntoDB($connection, $sql);
   header('location: index.php');
 } 
@@ -41,23 +39,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <div class="col-sm-8 blog-main">
         <form method="POST" action="posts.php">
           <div class="u-gap-bottom">
-            <label>Title</label>
-            <input type="text" name="title" required>
+            <label>Ime</label>
+            <input type="text" name="ime" required>
           </div>
 
           <div class="u-gap-bottom">
-            <label>Content</label>
-            <textarea name="body" required></textarea>
+            <label>Prezime</label>
+            <textarea name="Prezime" required></textarea>
           </div>
 
           <div class="u-gap-bottom">
-            <label>Created at</label>
-            <input type="date" name="created_at" required>
-          </div>
-
-          <div class="u-gap-bottom">
-            <label>Author</label>
-            <input type="text" name="author" required>
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
           </div>
 
           <div class="u-gap-bottom">
